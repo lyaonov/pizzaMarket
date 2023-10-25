@@ -8,21 +8,25 @@ import { getAppVersion } from '../../LocalStorage/GetAppVersion';
 export const fetchPizzas = createAsyncThunk<Pizza[], SearchPizzaParams>(
   'pizza/fetchPizzasStatus',
   async (params) => {
+    const appVersion = getAppVersion();
     const { sortBy, order, category, search, currentPage } = params;
+    const limit = appVersion && +appVersion === 1 ? 10 : 4;
+    
     const { data } = await axios.get<Pizza[]>(`https://pizza.nikitalieonov.repl.co/pizzas`, {
       params: pickBy(
         {
           page: currentPage,
-          limit: getAppVersion()!=='1'?4:10,
+          limit,
           category,
           sortBy,
           order,
           search,
         },
-        
+
         identity,
       ),
     });
+    
     return data;
   },
 );

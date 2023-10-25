@@ -11,13 +11,14 @@ import { fetchPizzas } from '../redux/pizza/asyncActions';
 
 const Home: React.FC = () => {
   const dispatch = useAppDispatch();
+  const appVersion = getAppVersion();
 
   const { items, status } = useSelector(selectPizzaData);
   const { categoryId, sort, currentPage, searchValue } = useSelector(selectFilter);
 
   const onChangeCategory = React.useCallback((idx: number) => {
     dispatch(setCategoryId(idx));
-  }, []);
+  }, [dispatch]);
 
   const onChangePage = (page: number) => {
     dispatch(setCurrentPage(page));
@@ -66,7 +67,7 @@ const Home: React.FC = () => {
         <div className="content__items">{status === 'loading' ? skeletons : pizzas}</div>
       )}
 
-      {getAppVersion()!=='1'?(<Pagination  currentPage={currentPage} onChangePage={onChangePage} />): null}
+      {appVersion && +appVersion !== 1 ? (<Pagination currentPage={currentPage} onChangePage={onChangePage} />) : null}
     </div>
   );
 };
