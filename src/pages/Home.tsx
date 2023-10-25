@@ -44,7 +44,6 @@ const Home: React.FC = () => {
   };
 
   React.useEffect(() => {
-
     getPizzas();
   }, [categoryId, sort.sortProperty, searchValue, currentPage]);
 
@@ -67,7 +66,7 @@ const Home: React.FC = () => {
         <div className="content__items">{status === 'loading' ? skeletons : pizzas}</div>
       )}
 
-      {appVersion && +appVersion !== 1 ? (<Pagination currentPage={currentPage} onChangePage={onChangePage} />) : null}
+      {appVersion !== 1 ? (<Pagination currentPage={currentPage} onChangePage={onChangePage} />) : null}
     </div>
   );
 };
