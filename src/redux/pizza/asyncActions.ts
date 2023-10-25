@@ -10,7 +10,7 @@ export const fetchPizzas = createAsyncThunk<Pizza[], SearchPizzaParams>(
   async (params) => {
     const appVersion = getAppVersion();
     const { sortBy, order, category, search, currentPage } = params;
-    const limit = appVersion && +appVersion === 1 ? 10 : 4;
+    const limit = appVersion === 1 ? 10 : 4;
     
     const { data } = await axios.get<Pizza[]>(`https://pizza.nikitalieonov.repl.co/pizzas`, {
       params: pickBy(

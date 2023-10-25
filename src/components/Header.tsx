@@ -1,15 +1,31 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 import logoSvg from '../assets/img/pizza-logo.svg';
 import { Search } from './';
 import { selectCart } from '../redux/cart/selectors';
+import { getAppVersion } from '../LocalStorage/GetAppVersion';
+import styled from 'styled-components';
+
+const Img = styled.img`
+    transform: rotate(90deg);
+    width: 100%;
+    max-width: 90px;
+`;
+
+const ImgWrapper = styled.div`
+    display: flex;
+    justify-content: center;
+    width: 100%;
+`;
+
 
 export const Header: React.FC = () => {
   const { items, totalPrice } = useSelector(selectCart);
   const location = useLocation();
   const isMounted = React.useRef(false);
+  const appVersion = getAppVersion();
 
   const totalCount = items.reduce((sum: number, item: any) => sum + item.count, 0);
 
@@ -21,16 +37,27 @@ export const Header: React.FC = () => {
     isMounted.current = true;
   }, [items]);
 
+  const customImg = useMemo(() => {
+    return (
+      <ImgWrapper>
+        <Img src={logoSvg} alt="Pizza logo" />
+      </ImgWrapper>
+    )
+  }, [])
+
   return (
     <div className="header">
       <div className="container">
         <Link to="/">
           <div className="header__logo">
-            <img width="38" src={logoSvg} alt="Pizza logo" />
-            <div>
-              <h1>React Pizza V2</h1>
-              <p>самая вкусная пицца во вселенной</p>
-            </div>
+            {appVersion === 2 ? customImg : (
+              <>
+                <img width="38" src={logoSvg} alt="Pizza logo" /><div>
+                  <h1>React Pizza V2</h1>
+                  <p>самая вкусная пицца во вселенной</p>
+                </div>
+              </>
+            )}
           </div>
         </Link>
         {location.pathname !== '/cart' && <Search />}
