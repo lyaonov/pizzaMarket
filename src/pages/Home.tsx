@@ -2,7 +2,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 
 import { Categories, Sort, PizzaBlock, Skeleton, Pagination } from '../components';
-
+import { getAppVersion } from '../LocalStorage/GetAppVersion';
 import { useAppDispatch } from '../redux/store';
 import { selectFilter } from '../redux/filter/selectors';
 import { selectPizzaData } from '../redux/pizza/selectors';
@@ -66,7 +66,7 @@ const Home: React.FC = () => {
         <div className="content__items">{status === 'loading' ? skeletons : pizzas}</div>
       )}
 
-      <Pagination currentPage={currentPage} onChangePage={onChangePage} />
+      {getAppVersion()!=='1'?(<Pagination  currentPage={currentPage} onChangePage={onChangePage} />): null}
     </div>
   );
 };

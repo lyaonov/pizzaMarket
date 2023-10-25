@@ -3,6 +3,7 @@ import axios from 'axios';
 import { Pizza, SearchPizzaParams } from './types';
 import pickBy from 'lodash/pickBy';
 import identity from 'lodash/identity';
+import { getAppVersion } from '../../LocalStorage/GetAppVersion';
 
 export const fetchPizzas = createAsyncThunk<Pizza[], SearchPizzaParams>(
   'pizza/fetchPizzasStatus',
@@ -12,12 +13,13 @@ export const fetchPizzas = createAsyncThunk<Pizza[], SearchPizzaParams>(
       params: pickBy(
         {
           page: currentPage,
-          limit: 4,
+          limit: getAppVersion()!=='1'?4:10,
           category,
           sortBy,
           order,
           search,
         },
+        
         identity,
       ),
     });
