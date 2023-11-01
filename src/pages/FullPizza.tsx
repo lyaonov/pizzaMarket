@@ -73,7 +73,7 @@ const FullPizza: React.FC = () => {
         </button>
       </Link>
       {
-        false ? <button onClick={onClickAdd} className="button button--outline button--add">
+        appVersion === 4 ? <button onClick={onClickAdd} className="button button--outline button--add">
           <svg
             width="12"
             height="12"
