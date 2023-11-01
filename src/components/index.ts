@@ -1,5 +1,6 @@
 export * from './PizzaBlock/Skeleton';
-export * from './PizzaBlock';
+export * from './PizzaBlock/DefaultPizzaBlock';
+export * from './PizzaBlock/CustomPizzaBlock';
 export * from './Header';
 export * from './Categories';
 export * from './CartItem';

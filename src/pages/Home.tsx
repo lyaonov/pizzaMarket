@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 
-import { Categories, Sort, PizzaBlock, Skeleton, Pagination } from '../components';
+import { Categories, Sort, DefaultPizzaBlock, CustomPizzaBlock, Skeleton, Pagination } from '../components';
 import { getAppVersion } from '../LocalStorage/GetAppVersion';
 import { useAppDispatch } from '../redux/store';
 import { selectFilter } from '../redux/filter/selectors';
@@ -47,7 +47,9 @@ const Home: React.FC = () => {
     getPizzas();
   }, [categoryId, sort.sortProperty, searchValue, currentPage]);
 
-  const pizzas = items.map((obj: any) => <PizzaBlock key={obj.id} {...obj} />);
+  const pizzas = items.map((obj: any) => appVersion === 3 ? <CustomPizzaBlock key={obj.id} {...obj} /> : <DefaultPizzaBlock key={obj.id} {...obj} />);
+  
+
   const skeletons = [...new Array(6)].map((_, index) => <Skeleton key={index} />);
 
   return (
