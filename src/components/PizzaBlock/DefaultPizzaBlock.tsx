@@ -17,7 +17,7 @@ type PizzaBlockProps = {
   rating: number;
 };
 
-export const PizzaBlock: React.FC<PizzaBlockProps> = ({
+export const DefaultPizzaBlock: React.FC<PizzaBlockProps> = ({
   id,
   title,
   price,
