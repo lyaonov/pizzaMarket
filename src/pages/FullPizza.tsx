@@ -42,6 +42,12 @@ const FullPizza: React.FC = () => {
     };
 
     dispatch(addItem(item));
+
+    // @ts-ignore
+    window.ym(95160416, 'reachGoal', 'addPizza', {version: appVersion.toString()})
+
+    // @ts-ignore
+    window.ym(95160416, 'reachGoal', 'addPizzaFull', {version: appVersion.toString()})
   };
 
   React.useEffect(() => {
