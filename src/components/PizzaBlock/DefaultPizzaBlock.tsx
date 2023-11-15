@@ -44,7 +44,8 @@ export const DefaultPizzaBlock: React.FC<PizzaBlockProps> = ({
     };
     dispatch(addItem(item));
     //@ts-ignore
-  window.ym(95160416,'reachGoal','addPizza')
+  window.ym(95160416,'reachGoal','addPizza' , {version: appVersion});
+ 
   };
 
   return (
