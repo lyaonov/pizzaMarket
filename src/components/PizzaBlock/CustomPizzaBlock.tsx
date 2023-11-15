@@ -5,6 +5,7 @@ import { selectCartItemById } from '../../redux/cart/selectors';
 import { CartItem } from '../../redux/cart/types';
 import { addItem } from '../../redux/cart/slice';
 import styled from 'styled-components';
+import { getAppVersion } from '../../LocalStorage/GetAppVersion';
 
 const typeNames = ['тонкое', 'традиционное'];
 
@@ -65,6 +66,7 @@ export const CustomPizzaBlock: React.FC<PizzaBlockProps> = ({
   const cartItem = useSelector(selectCartItemById(id));
   const [activeType, setActiveType] = React.useState(0);
   const [activeSize, setActiveSize] = React.useState(0);
+  const appVersion = getAppVersion();
 
   const addedCount = cartItem ? cartItem.count : 0;
 
@@ -79,6 +81,8 @@ export const CustomPizzaBlock: React.FC<PizzaBlockProps> = ({
       count: 0,
     };
     dispatch(addItem(item));
+    // @ts-ignore
+    window.ym(95160416,'reachGoal','bigButton', {version: appVersion})
   };
 
   return (
