@@ -43,6 +43,8 @@ export const DefaultPizzaBlock: React.FC<PizzaBlockProps> = ({
       count: 0,
     };
     dispatch(addItem(item));
+    //@ts-ignore
+  window.ym(95160416,'reachGoal','addPizza')
   };
 
   return (
@@ -76,7 +78,9 @@ export const DefaultPizzaBlock: React.FC<PizzaBlockProps> = ({
         </div>
         <div className="pizza-block__bottom">
           <div className="pizza-block__price">от {price} ₽</div>
-          <button onClick={onClickAdd} className="button button--outline button--add">
+          <button 
+          onClick= {onClickAdd}          
+          className="button button--outline button--add">
             <svg
               width="12"
               height="12"

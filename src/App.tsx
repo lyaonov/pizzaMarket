@@ -1,12 +1,18 @@
 import Loadable from 'react-loadable';
 import React, { Suspense } from 'react';
 import { Routes, Route } from 'react-router-dom';
+import { getAppVersion } from './LocalStorage/GetAppVersion';
 
 import Home from './pages/Home';
 
 import './scss/app.scss';
 import MainLayout from './layouts/MainLayout';
 
+const appVersion = getAppVersion();
+if (appVersion === 1) {
+  //@ts-ignore
+  window.ym(95160416,'reachGoal','version1')
+}
 const Cart = Loadable({
   loader: () => import(/* webpackChunkName: "Cart" */ './pages/Cart'),
   loading: () => <div>Идёт загрузка корзины...</div>,
