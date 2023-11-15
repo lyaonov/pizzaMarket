@@ -44,11 +44,13 @@ export const Header: React.FC = () => {
       </ImgWrapper>
     )
   }, [])
-
+// @ts-ignore
   return (
     <div className="header">
       <div className="container">
-        <Link to="/">
+        <Link to="/" onClick={() => { 
+          // @ts-ignore
+          window.ym(95160416, 'reachGoal', 'clickLogo', { version: appVersion.toString() }) }}>
           <div className="header__logo">
             {appVersion === 2 ? customImg : (
               <>
