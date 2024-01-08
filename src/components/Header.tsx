@@ -12,6 +12,7 @@ const Img = styled.img`
     transform: rotate(90deg);
     width: 100%;
     max-width: 90px;
+    min-width: 90px;
 `;
 
 const ImgWrapper = styled.div`
