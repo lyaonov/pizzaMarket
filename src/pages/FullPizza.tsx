@@ -7,6 +7,7 @@ import {getAppVersion} from "../LocalStorage/GetAppVersion";
 import {CartItem} from "../redux/cart/types";
 import {addItem} from "../redux/cart/slice";
 import {useAppDispatch} from "../redux/store";
+import { getPizza } from '../utils/backend';
 
 const typeNames = ['тонкое', 'традиционное'];
 
@@ -53,8 +54,10 @@ const FullPizza: React.FC = () => {
   React.useEffect(() => {
     async function fetchPizza() {
       try {
-        const {data} = await axios.get('https://2cdb8ebc-9a4a-4c97-b4a7-a6cac2b1724a-00-1wm7k35sjiz27.global.replit.dev/item/' + id);
+        // const {data} = await axios.get('https://2cdb8ebc-9a4a-4c97-b4a7-a6cac2b1724a-00-1wm7k35sjiz27.global.replit.dev/item/' + id);
+        const data = getPizza(id)
         setPizza(data);
+
       } catch (error) {
         alert('Ошибка при получении пиццы!');
         navigate('/');
